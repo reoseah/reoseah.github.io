@@ -1,5 +1,5 @@
 ---
-
+import HeaderBackgroundURL from '/images/gradient-mapped-tree.webp?url';
 ---
 
 <html lang="en">
@@ -8,9 +8,111 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>reoseah.github.io | Not even I know what will go here</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
+		<style is:global>
+			*,
+			*::before,
+			*::after {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: "Outfit", system-ui, sans-serif;
+				font-optical-sizing: auto;
+			}
+
+			header {
+				height: 100dvh;
+				background-color: rgb(255, 0, 0);
+				color: white;
+				overflow: clip;
+				position: relative;
+			}
+
+			h1 {
+				font-size: min(max(3.5rem, 10vw), 8rem);
+				padding-left: .325em;
+				padding-top: 1.5em;
+				position: relative;
+				z-index: 1;
+				line-height: 1.2;
+			}
+
+			header p {
+				position: absolute;
+				font-size: 6vh;
+				writing-mode: vertical-rl;
+				white-space: nowrap;
+				right: 1vh;
+				top: 10vh;
+				rotate: 180deg;
+				z-index: 1;
+			}
+
+			header img {
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				height: 100%;
+			}
+
+			header nav {
+				position: absolute;
+				inset: 0 0 auto 0;
+				z-index: 2;
+				display: flex;
+				gap: 2rem;
+				padding: 1rem 2rem;
+				font-size: 1.5rem;
+			}
+
+			header nav a {
+				color: white;
+				text-decoration: none;
+			}
+
+			header nav a:hover {
+				text-decoration: underline;
+			}
+
+			header nav ul {
+				display: flex;
+				list-style: none;
+				gap: 1rem;
+			}
+
+			.bold {
+				font-weight: bold;
+			}
+		</style>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<header>
+			<img src={HeaderBackgroundURL} alt="">
+			<nav>
+				<a class="bold" href="/">reoseah.github.io</a>
+				<ul>
+					<li>
+						<a href="#">lorem</a>
+					</li>
+					<li>
+						<a href="#">ipsum</a>
+					</li>
+				</ul>
+			</nav>
+			<h1>
+				bohdan<br>
+				yaroslavtsev<br>
+				page
+			</h1>
+			<p>not even I know what is it about</p>
+		</header>
 	</body>
 </html>
