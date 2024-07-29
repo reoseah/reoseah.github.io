@@ -129,7 +129,7 @@
         const camera = new THREE.PerspectiveCamera(25, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer();
 
-        renderer.setSize(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setClearColor(0x101215);
         document.querySelector('.hero').insertAdjacentElement("afterbegin", renderer.domElement);
 
@@ -172,6 +172,13 @@
 
         camera.position.z = 50;
 
+        const animate = () => {
+            requestAnimationFrame(animate);
+
+            animateTriangles();
+
+            renderer.render(scene, camera);
+        };
 
         let prevPositions = [];
         let nextPositions = [];
@@ -230,14 +237,6 @@
                 randomizeTriangles();
             }
         }
-
-        const animate = () => {
-            requestAnimationFrame(animate);
-
-            animateTriangles();
-
-            renderer.render(scene, camera);
-        };
 
         randomizeTriangles()
         randomizeTriangles()
