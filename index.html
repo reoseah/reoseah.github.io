@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reoseah.github.io</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            font-family: "Outfit", sans-serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+
+            color: #f0f0f0;
+            background-color: #202020;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        header {
+            height: 0;
+        }
+
+        .headerContent {
+            font-size: 1.5rem;
+            font-weight: 225;
+            color: #fff;
+            display: flex;
+            max-width: min(100vw - 2rem, 1140px);
+            margin-inline: auto;
+        }
+
+        .headerContent a {
+            padding: 1rem 2rem;
+            color: inherit;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .hero h2 {
+            position: relative;
+            margin: 0;
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(to right, #546e6e, #bef2ff, #546e6e, #bef2ff, #546e6e);
+            background-size: 200% 200%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            animation: rainbow 1s linear infinite;
+            color: rgba(255, 255, 255, 1);
+            transition: color .5s ease-out;
+        }
+
+        .hero h2:hover {
+            color: rgba(255, 255, 255, 0);
+        }
+
+        @keyframes rainbow {
+            0% {
+                background-position: right
+            }
+
+            100% {
+                background-position: left
+            }
+        }
+
+        .hero canvas {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+        }
+
+        .hero p {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 120;
+            color: #fff;
+        }
+    </style>
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.167.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.167.0/examples/jsm/"
+          }
+        }
+      </script>
+
+</head>
+
+<body>
+    <header>
+        <div class="headerContent">
+            <a href="/">reoseah.github.io</a>
+        </div>
+    </header>
+    <main class="hero">
+        <h2>bohdan yaroslavtsev</h2>
+        <p>aka @reoseah online</p>
+    </main>
+
+    <script type="module">
+        import * as THREE from 'three';
+
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.Fog(0x30464a, 25, 75);
+
+        const camera = new THREE.PerspectiveCamera(25, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x101215);
+        document.querySelector('.hero').insertAdjacentElement("afterbegin", renderer.domElement);
+
+        const triangleCount = 128;
+        const triangles = [];
+
+        const material = new THREE.MeshPhongMaterial({ color: 0x050609, side: THREE.DoubleSide, shininess: 0 });
+        for (let i = 0; i < triangleCount; i++) {
+            let geometry = new THREE.BufferGeometry();
+            const vertices = new Float32Array([
+                0, 1, 0,
+                -1, -1, 0,
+                1, -1, 0
+            ]);
+            geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+            geometry.computeVertexNormals();
+
+            const triangle = new THREE.Mesh(geometry, material);
+
+            triangle.position.set(
+                THREE.MathUtils.randFloatSpread(50),
+                THREE.MathUtils.randFloatSpread(25),
+                THREE.MathUtils.randFloatSpread(25)
+            );
+
+            triangle.rotation.set(
+                THREE.MathUtils.randFloat(0, Math.PI * 2),
+                THREE.MathUtils.randFloat(0, Math.PI * 2),
+                THREE.MathUtils.randFloat(0, Math.PI * 2)
+            );
+
+            scene.add(triangle);
+            triangles.push(triangle);
+        }
+
+        const backlight = new THREE.DirectionalLight(0x66b7bf, 100);
+        backlight.position.set(0, 0, -10);
+        backlight.target.position.set(0, 0, 0);
+        scene.add(backlight);
+
+        camera.position.z = 50;
+
+        const animate = () => {
+            requestAnimationFrame(animate);
+
+            animateTriangles();
+
+            renderer.render(scene, camera);
+        };
+
+        let prevPositions = [];
+        let nextPositions = [];
+        let prevRotations = [];
+        let nextRotations = [];
+        let prevScales = [];
+        let nextScales = [];
+        const transitionTime = 10000;
+        let transitionStart;
+
+        const randomizeTriangles = () => {
+            transitionStart = Date.now();
+
+            prevPositions = nextPositions;
+            prevRotations = nextRotations;
+            prevScales = nextScales;
+
+            nextPositions = [];
+            nextRotations = [];
+            nextScales = [];
+
+            for (let i = 0; i < triangleCount; i++) {
+                nextPositions.push(new THREE.Vector3(
+                    THREE.MathUtils.randFloatSpread(50),
+                    THREE.MathUtils.randFloatSpread(25),
+                    THREE.MathUtils.randFloatSpread(25)
+                ));
+
+                nextRotations.push(new THREE.Euler(
+                    THREE.MathUtils.randFloat(0, Math.PI * 2),
+                    THREE.MathUtils.randFloat(0, Math.PI * 2),
+                    THREE.MathUtils.randFloat(0, Math.PI * 2)
+                ));
+
+                nextScales.push(new THREE.Vector3(
+                    THREE.MathUtils.randFloat(0.5, 5),
+                    THREE.MathUtils.randFloat(0.5, 5),
+                    THREE.MathUtils.randFloat(0.5, 5)
+                ));
+            }
+        }
+
+        const animateTriangles = () => {
+            const now = Date.now();
+            const progress = (now - transitionStart) / transitionTime;
+
+            for (let i = 0; i < triangleCount; i++) {
+                triangles[i].position.lerpVectors(prevPositions[i], nextPositions[i], progress);
+                triangles[i].rotation.x = THREE.MathUtils.lerp(prevRotations[i].x, nextRotations[i].x, progress);
+                triangles[i].rotation.y = THREE.MathUtils.lerp(prevRotations[i].y, nextRotations[i].y, progress);
+                triangles[i].rotation.z = THREE.MathUtils.lerp(prevRotations[i].z, nextRotations[i].z, progress);
+                triangles[i].scale.lerpVectors(prevScales[i], nextScales[i], progress);
+            }
+
+            if (progress >= 1) {
+                randomizeTriangles();
+            }
+        }
+
+        randomizeTriangles()
+        randomizeTriangles()
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+
+</html>
