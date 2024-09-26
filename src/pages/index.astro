@@ -1,5 +1,5 @@
 ---
-
+import "../style.css"
 ---
 
 <html lang="en">
@@ -7,10 +7,53 @@
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>reoseah.github.io</title>
 	</head>
-	<body>
-		<h1>Astro</h1>
+	<body class="bg-gray-100">
+		<header>
+			<h1 class="font-stix-two h-4rem max-w-[min(75rem,100%-2rem)] mx-auto text-1.25rem font-medium flex items-center lg:text-1.5rem lg:h-6rem">
+				<a href="/">reoseah.github.io</a>
+			</h1>
+		</header>
+		<main class="font-stix-two text-1.25rem font-medium lg:text-1.5rem">
+			<div>
+				<h2 class="font-redaction text-2rem leading-[1.1875] max-w-[min(75rem,100%-2rem)] mx-auto flex flex-col py-1rem lg:text-3rem">
+					<span class="font-bold">Bohdan Yaroslavtsev</span>
+					<span>aka <span class="font-stix-two font-medium font-italic">@</span>reoseah online</span>
+				</h2>
+			</div>
+			<div class="max-w-[min(75rem,100%-2rem)] mx-auto py-1rem grid gap-2rem lg:grid-cols-2">
+				<div>
+					<p>
+						Human, programmer, web developer, hobby game designer, modder, walking encyclopedia, and much-much more.
+					</p>
+				</div>
+				<ul>
+					<li class="flex gap-1rem items-center">
+						<a href="#" >
+							Something resembling portfolio
+						</a>
+						<span class="font-lucette text-1.5rem lg:text-2.375rem leading-none h-0 translate-y-[-.55em]" aria-hidden>→</span>
+					</li>
+					<li class="flex gap-1rem items-center">
+						<a href="#" >
+							Work-in-progress 2
+						</a>
+						<span class="font-lucette text-1.5rem lg:text-2.375rem leading-none h-0 translate-y-[-.55em]" aria-hidden>→</span>
+					</li>
+					<li class="flex gap-1rem items-center">
+						<a href="#" >
+							Work-in-progress 3
+						</a>
+						<span class="font-lucette text-1.5rem lg:text-2.375rem leading-none h-0 translate-y-[-.55em]" aria-hidden>→</span>
+					</li>
+				</ul>
+			</div>
+			<div class="max-w-[min(75rem,100%-2rem)] mx-auto py-1rem grid gap-1rem lg:grid-cols-3 lg:py-3rem">
+				<img src="/assets/photo-1.jpg" alt="self-portrait with a DIY red and blue colored lens"/>
+				<img src="/assets/photo-2.jpg" alt="self-portrait with a piece of cloth stretched over the camera"/>
+				<img src="/assets/photo-3.jpg" alt="self-portrait with a piece of polyethylene stretched over the camera"/>
+			</div>
+		</main>
 	</body>
 </html>

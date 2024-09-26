@@ -1,0 +1,48 @@
+@font-face {
+    font-family: 'STIX Two Text';
+    src: url("/assets/STIXTwoText[wght].woff2") format("woff2");
+    font-weight: 400 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'STIX Two Text';
+    src: url("/assets/STIXTwoText-Italic[wght].woff2") format("woff2");
+    font-weight: 400 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Redaction';
+    src: url("/assets/Redaction-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Redaction';
+    src: url("/assets/Redaction-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Redaction';
+    src: url("/assets/Redaction-Italic.woff2") format("woff2");
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Lucette';
+    src: url("/assets/Lucette-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lucette';
+    src: url("/assets/Lucette-Regularitalic.woff2") format("woff2");
+    font-weight: 400;
+    font-style: italic;
+}
