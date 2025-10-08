@@ -1,48 +1,38 @@
+@import "@unocss/reset/tailwind.css";
+
 @font-face {
-    font-family: 'STIX Two Text';
-    src: url("/assets/STIXTwoText[wght].woff2") format("woff2");
-    font-weight: 400 700;
-    font-style: normal;
+	font-family: "STIX Two Text";
+	src: url("/assets/STIXTwoText[wght].woff2") format("woff2");
+	font-weight: 400 700;
+	font-style: normal;
 }
 
 @font-face {
-    font-family: 'STIX Two Text';
-    src: url("/assets/STIXTwoText-Italic[wght].woff2") format("woff2");
-    font-weight: 400 700;
-    font-style: italic;
+	font-family: "STIX Two Text";
+	src: url("/assets/STIXTwoText-Italic[wght].woff2") format("woff2");
+	font-weight: 400 700;
+	font-style: italic;
 }
 
 @font-face {
-    font-family: 'Redaction';
-    src: url("/assets/Redaction-Regular.woff2") format("woff2");
-    font-weight: 400;
-    font-style: normal;
+	font-family: "Inter";
+	font-weight: 100 900;
+	font-display: swap;
+	font-style: normal;
+	src:
+		url("/assets/InterVariable.woff2?v=4.0") format("woff2-variations"),
+		url("/assets/InterVariable.woff2?v=4.0") format("woff2");
+	src: url("/assets/InterVariable.woff2?v=4.0") format("woff2")
+		tech("variations");
 }
-
 @font-face {
-    font-family: 'Redaction';
-    src: url("/assets/Redaction-Bold.woff2") format("woff2");
-    font-weight: 700;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Redaction';
-    src: url("/assets/Redaction-Italic.woff2") format("woff2");
-    font-weight: 400;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Lucette';
-    src: url("/assets/Lucette-Regular.woff2") format("woff2");
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Lucette';
-    src: url("/assets/Lucette-Regularitalic.woff2") format("woff2");
-    font-weight: 400;
-    font-style: italic;
+	font-family: "Inter";
+	font-weight: 100 900;
+	font-display: swap;
+	font-style: italic;
+	src:
+		url("/assets/InterVariable-Italic.woff2?v=4.0") format("woff2-variations"),
+		url("/assets/InterVariable-Italic.woff2?v=4.0") format("woff2");
+	src: url("/assets/InterVariable-Italic.woff2?v=4.0") format("woff2")
+		tech("variations");
 }

@@ -1,0 +1,146 @@
+---
+interface Props {
+    images: {
+        src: string;
+        alt?: string;
+        description?: string;
+    }[];
+}
+const { images } = Astro.props;
+---
+
+<div class="embla">
+    <div class="embla__container">
+        {
+            images.map((image) => (
+                <div class="embla__slide">
+                    <img src={image.src} alt={image.alt} />
+                    {image.description && (
+                        <span class="slide-description">
+                            {image.description}
+                        </span>
+                    )}
+                </div>
+            ))
+        }
+    </div>
+</div>
+
+<style>
+    :global(.embla) {
+        overflow: hidden;
+    }
+    :global(.embla__container) {
+        display: flex;
+        gap: 1rem;
+    }
+    :global(.embla__slide) {
+        min-width: 0;
+        flex: 0 0 auto;
+        width: fit-content;
+        cursor: grab;
+        position: relative;
+
+        & > img {
+            max-width: unset;
+            max-height: 40rem;
+            width: auto;
+        }
+    }
+
+    .slide-description {
+        position: absolute;
+        inset: auto 0 0 0;
+        background: white;
+        padding: 0.5rem 1rem;
+        opacity: 0;
+        transition: opacity 0.25s ease;
+
+        *:hover > & {
+            opacity: 1;
+        }
+    }
+
+    :global(.carousel-thumbnails .embla__container) {
+        gap: 0.5rem;
+    }
+    :global(.carousel-thumbnails .embla__slide) {
+        cursor: pointer;
+        & > img {
+            max-height: 8rem;
+        }
+
+        filter: brightness(0.6);
+        transition: filter 0.15s ease;
+
+        &[data-selected] {
+            filter: brightness(1);
+        }
+    }
+</style>
+
+<script>
+    import EmblaCarousel from "embla-carousel";
+
+    const thumbnailsTemplate = document.createElement("template");
+    thumbnailsTemplate.innerHTML = `<div class="embla carousel-thumbnails"><div class="embla__container">`;
+
+    const createThumbnailsFromSlides = (slidesRoot: HTMLElement) => {
+        const thumbnailsRoot = thumbnailsTemplate.content.cloneNode(true)
+            .firstChild as HTMLDivElement;
+        const thumbnailsContainer =
+            thumbnailsRoot.querySelector<HTMLDivElement>(".embla__container")!;
+        slidesRoot.insertAdjacentElement("afterend", thumbnailsRoot);
+
+        for (const slide of slidesRoot.querySelectorAll(".embla__slide")) {
+            const clone = slide.cloneNode(true) as HTMLElement;
+            clone.querySelectorAll(".slide-description").forEach((el) => {
+                el.remove();
+            });
+            thumbnailsContainer.append(clone);
+        }
+
+        return thumbnailsRoot;
+    };
+
+    for (const slidesRoot of Array.from(
+        document.querySelectorAll<HTMLElement>(".embla"),
+    )) {
+        const thumbnailsRoot = createThumbnailsFromSlides(slidesRoot);
+
+        const slidesEmbla = EmblaCarousel(slidesRoot, {
+            dragFree: true,
+        });
+        const thumbnailsEmbla = EmblaCarousel(thumbnailsRoot, {
+            containScroll: "keepSnaps",
+            dragFree: true,
+        });
+
+        const slides = slidesEmbla.slideNodes();
+        const thumbnails = thumbnailsEmbla.slideNodes();
+
+        thumbnails.forEach((thumbnail, idx) => {
+            thumbnail.addEventListener("click", (e) => {
+                slidesEmbla.scrollTo(idx);
+                e.preventDefault();
+            });
+        });
+
+        slides[0].setAttribute("data-selected", "");
+        thumbnails[0].setAttribute("data-selected", "");
+
+        const syncThumbnailsToSlides = () => {
+            const previous = slidesEmbla.previousScrollSnap();
+            const selected = slidesEmbla.selectedScrollSnap();
+
+            thumbnailsEmbla.scrollTo(selected);
+            thumbnails[previous].removeAttribute("data-selected");
+            thumbnails[selected].setAttribute("data-selected", "");
+
+            slides[previous].removeAttribute("data-selected");
+            slides[selected].setAttribute("data-selected", "");
+        };
+
+        slidesEmbla.on("select", syncThumbnailsToSlides);
+    }
+</script>
