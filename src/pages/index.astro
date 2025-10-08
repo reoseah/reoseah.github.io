@@ -50,6 +50,9 @@ import PageLayout from "../layouts/PageLayout.astro";
 		font-weight: bold;
 		font-size: 1.625rem;
 	}
+	:global(:not(h3)) + h4 {
+		padding-top: 1rem;
+	}
 </style>
 
 <PageLayout>
@@ -93,8 +96,8 @@ import PageLayout from "../layouts/PageLayout.astro";
 	</p>
 
 	<h3>Escuelas Taller "Gijón Acompaña"</h3>
-
 	<h4>Version for project's "website"</h4>
+
 	<p>
 		The first this we did <s>in absence of something more useful</s> were designs
 		for a website for the project itself, then voted on which one we liked. I
@@ -116,6 +119,37 @@ import PageLayout from "../layouts/PageLayout.astro";
 				alt: "screenshot of the very early version of the site",
 				description:
 					"A very early version. I viewed too much media saying neo-brutalism was going to be a trend in 2023",
+			},
+		]}
+	/>
+
+	<h4>Proposal for viewing geospatial data</h4>
+	<p>
+		The idea was simply to be able to preview datasets at <a
+			href="https://www.gijon.es/es/datos">gijon.es/es/datos</a
+		> directly there. Born out of frustration of having to download *.kml files,
+		then use a different website to view them.
+	</p>
+
+	<img src="/assets/kml viewer animation.webp" alt="recording of the app" />
+
+	<h4>Air pollutants on heatmap chart</h4>
+	<p>
+		Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum,
+		ipsum?
+	</p>
+
+	<SlideCarousel
+		images={[
+			{
+				src: "/assets/air quality.webp",
+				alt: "screenshot of the web app",
+			},
+			{
+				src: "/assets/air quality plasma.webp",
+				alt: "screenshot of the web app",
+				description:
+					"Different coloring options better suited for certain kinds of color blindness",
 			},
 		]}
 	/>
