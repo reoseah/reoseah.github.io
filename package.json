@@ -1,26 +1,27 @@
 {
-  "name": "reoseah.github.io",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/solid-js": "^5.1.1",
-    "embla-carousel": "^8.6.0",
-    "solid-js": "^1.9.9",
-    "swiper": "^12.0.2"
-  },
-  "devDependencies": {
-    "@astrojs/check": "^0.9.4",
-    "@biomejs/biome": "^2.2.5",
-    "@unocss/reset": "^66.5.2",
-    "astro": "^5.14.1",
-    "typescript": "^5.9.3",
-    "vite": "^7.1.7"
-  }
+	"name": "example-basic",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"dev": "vinxi dev",
+		"build": "vinxi build",
+		"start": "vinxi start",
+		"version": "vinxi version"
+	},
+	"dependencies": {
+		"@babel/preset-typescript": "^7.27.1",
+		"@biomejs/biome": "^2.2.5",
+		"@linaria/core": "^6.3.0",
+		"@solidjs/meta": "^0.29.4",
+		"@solidjs/router": "^0.15.0",
+		"@solidjs/start": "^1.1.0",
+		"@unocss/reset": "^66.5.3",
+		"@wyw-in-js/vite": "^0.7.0",
+		"embla-carousel": "^8.6.0",
+		"solid-js": "^1.9.5",
+		"vinxi": "^0.5.7"
+	},
+	"engines": {
+		"node": ">=22"
+	}
 }

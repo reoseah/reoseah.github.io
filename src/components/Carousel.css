@@ -1,0 +1,55 @@
+.embla {
+	overflow: hidden;
+}
+
+.embla__container {
+	display: flex;
+	gap: 1rem;
+}
+
+.embla__slide {
+	position: relative;
+	flex: 0 0 auto;
+	width: fit-content;
+	min-width: 0;
+	cursor: grab;
+
+	& > img {
+		width: auto;
+		max-width: unset;
+		max-height: 40rem;
+	}
+}
+
+.slide-description {
+	position: absolute;
+	inset: auto 0 0 0;
+
+	padding: 0.5rem 1rem;
+	background: white;
+	border-top: 1px solid black;
+	opacity: 0;
+	transition: opacity 0.25s ease;
+
+	*:hover > & {
+		opacity: 1;
+	}
+}
+
+.carousel-thumbnails .embla__container {
+	gap: 0.5rem;
+}
+
+.carousel-thumbnails .embla__slide {
+	cursor: pointer;
+	filter: brightness(0.6);
+	transition: filter 0.15s ease;
+
+	&[data-selected] {
+		filter: brightness(1);
+	}
+
+	& > img {
+		max-height: 8rem;
+	}
+}
