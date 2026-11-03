@@ -9,19 +9,19 @@
 		"version": "vinxi version"
 	},
 	"dependencies": {
-		"@babel/preset-typescript": "^7.27.1",
-		"@biomejs/biome": "^2.2.5",
+		"@babel/preset-typescript": "^7.29.7",
+		"@biomejs/biome": "^2.6.4",
 		"@linaria/core": "^6.3.0",
 		"@solidjs/meta": "^0.29.4",
-		"@solidjs/router": "^0.15.0",
-		"@solidjs/start": "^1.1.0",
-		"@unocss/reset": "^66.5.3",
+		"@solidjs/router": "^0.15.4",
+		"@solidjs/start": "^1.5.0",
+		"@unocss/reset": "^66.12.0",
 		"@wyw-in-js/vite": "^0.7.0",
 		"embla-carousel": "^8.6.0",
-		"solid-js": "^1.9.5",
-		"vinxi": "^0.5.7"
+		"solid-js": "^1.9.18",
+		"vinxi": "^0.5.11"
 	},
 	"engines": {
-		"node": ">=22"
+		"node": "22.x"
 	}
 }
